@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "medisync-bot",
+  "private_key_id": "7d452986b64a69c76aaaaeabb1130724760f254d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCwqugDDZVNAwS1\n8IF9X4RXIOCpjtTPS1gn9Pjac8340LaD2DlVo1CuAn1XqN+ULsKoVwNySB7Y+EjS\ntycWwXkO9uizSXbdqgNqwplPlOpOAyfjuBkymSi4ba1nPKdJE5XBILSfRqxYBDsL\nW/nbM5ELFfv9yhMluoj51elWHih5hPCTfFc0m1lKoWhqL40eG2G9L6dAHSJ7Jjsl\nCUMSe265m3apyMR21oRM6tojjdePju6fyJpwxTXdW+Z+nX13nkP2ZLDNTCvzKhsd\n63Ike9XHETAyd9ersVyAbdHtRCwQLhrxVposon+fZtY2Q5DBzkT2JU5ZX4vvV8RR\nA/aJRbbFAgMBAAECggEAGHcmh6u1IhPZrmd2yzmzzkwViK2ov2dH90qXvsrcOomO\nyP3j3L3v4ZUjLgVLJw59swnPxp8BtJrXnOSzw1U6Mk4TpiZ1kVdmvz1hNVHiS7jo\nqIK5bJYkuzunEJ2n7fkKG1Nv6AHFwq+dTKKpXIeM3cvm2HvIQIiPSQfsVxp4kPFS\njULFm12AmSHlWgII7srDTgYLQzXlcwbnEPkYSVgZQRv83cMxI0OGxcaQmwYyNTJf\nzGL8fkpcxspsW2NRj3QENtrbHEPs/ni5wk3JWTeX4pnLU5HXYnJ0vm8S9cZvlUXI\n0Vvc3zDQouPoMv3DlkbacJwSz2N3Yh7yfTkvSFIP2QKBgQDtQ7OVaIYwxFgMUvvy\nUeao2AsMU8aVlka1m0fkW8yXM/MwbMoGRlGbJSPF4G8qAaYa3xuGIuFSoMyDzQ+P\noGehw0qM6t52umQqr05cr3CEzIJL3HA0LoFTeV1bd07NrMRRWHcMx2jeeR2Zcp73\nvF6Gsn0eCOO31bnr8yJDoFenLQKBgQC+nj1wbE9EDQK1Z2PszOfVjWqUKRIGH3wG\nlrusAKqNOAnxIW2Zca4K6vCNy/b9vGDViVNrafQFKlGQzaTHOYF2Tlke0zBNCPEl\nVzGE3/i/BBZLeMwds7PFVXTwbqfhhFd1GVR9//pNcknpbB/nD9i5RACMre0CNYSj\nm5KT9aYM+QKBgHAfACxoupEtF9arGHiIj5HWllH6/OsPmtaTTMPzRZlmaVPG9SlF\n7aZ9RIxr5Nxa7x3ftOgMb6JWbo8SRno++PoOiZpSG1LL/i3VrhhKp8d5xVEIGNXv\n7BmATse8d7bmH9e5EHkverU3Uu+CpPC5SYopqsqYtNPY4gVIXjbK/OD5AoGAH5KI\nLKHT8zqQc0l/tI4v7CAzQf0Xfioi2diHlzK5DRD2HJlj1OGOaUKGu4XIEDjudQ/8\n4DK5d02OGwTkwRbWSakqe7+RJYFQp9WsXwzV35Wmt7N3Y4gLQ6km6Ff7uI+6CKw8\nYW5PoBpJAb+l/RiT1gPcb3CzbAU/RfYTriwm58kCgYEA4Hc5HnSGtK4+1NqOu3R/\nov00dBJDuPCWH1CIQqckthBlwqbCxMcJDHcUdTqglaV9ZxfOJwoTMuSw2Urm2U/W\nI0KjD3dGiXzBm8dxF38qDoBFdcUt8JV9UgXnaEtnilrhLHKmu/hh1oc4YQRRWtKT\nZgq8Fqhyk8DHL/HUc9RT5CU=\n-----END PRIVATE KEY-----\n",
+  "client_email": "snaptech@medisync-bot.iam.gserviceaccount.com",
+  "client_id": "107268376492551686046",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/snaptech%40medisync-bot.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
