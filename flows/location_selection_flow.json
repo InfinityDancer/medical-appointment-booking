@@ -1,0 +1,73 @@
+{
+    "version": "6.0",
+    "screens": [
+        {
+            "id": "LOCATION_SELECTION",
+            "title": "Select a Clinic",
+            "terminal": true,
+            "data": {
+                "locations": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            },
+                            "title": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "__example__": [
+                        {
+                            "id": "surat",
+                            "title": "Surat"
+                        },
+                        {
+                            "id": "mumbai",
+                            "title": "Mumbai"
+                        }
+                    ]
+                },
+                "header_text": {
+                    "type": "string",
+                    "__example__": "Please select your preferred clinic location"
+                }
+            },
+            "layout": {
+                "type": "SingleColumnLayout",
+                "children": [
+                    {
+                        "type": "Form",
+                        "name": "location_form",
+                        "children": [
+                            {
+                                "type": "TextBody",
+                                "text": "${data.header_text}"
+                            },
+                            {
+                                "type": "Dropdown",
+                                "name": "selected_location",
+                                "label": "Clinic Location",
+                                "required": true,
+                                "data-source": "${data.locations}"
+                            },
+                            {
+                                "type": "Footer",
+                                "label": "Continue",
+                                "on-click-action": {
+                                    "name": "complete",
+                                    "payload": {
+                                        "selected_location": "${form.selected_location}",
+                                        "flow_type": "location_selection"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

@@ -1,0 +1,90 @@
+{
+    "version": "6.0",
+    "screens": [
+        {
+            "id": "SLOT_SELECTION",
+            "title": "Pick a Date & Time",
+            "terminal": true,
+            "data": {
+                "doctor_name": {
+                    "type": "string",
+                    "__example__": "Dr Neelesh Gupta"
+                },
+                "min_date": {
+                    "type": "string",
+                    "__example__": "2026-04-08"
+                },
+                "max_date": {
+                    "type": "string",
+                    "__example__": "2026-04-22"
+                },
+                "slots": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            },
+                            "title": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    "__example__": [
+                        {
+                            "id": "09:00",
+                            "title": "9:00 AM"
+                        },
+                        {
+                            "id": "10:00",
+                            "title": "10:00 AM"
+                        }
+                    ]
+                }
+            },
+            "layout": {
+                "type": "SingleColumnLayout",
+                "children": [
+                    {
+                        "type": "Form",
+                        "name": "slot_form",
+                        "children": [
+                            {
+                                "type": "TextBody",
+                                "text": "Select your preferred date and time for appointment with ${data.doctor_name}"
+                            },
+                            {
+                                "type": "DatePicker",
+                                "name": "selected_date",
+                                "label": "Appointment Date",
+                                "required": true,
+                                "min-date": "${data.min_date}",
+                                "max-date": "${data.max_date}"
+                            },
+                            {
+                                "type": "Dropdown",
+                                "name": "selected_slot",
+                                "label": "Choose a Time Slot",
+                                "required": true,
+                                "data-source": "${data.slots}"
+                            },
+                            {
+                                "type": "Footer",
+                                "label": "Book This Slot",
+                                "on-click-action": {
+                                    "name": "complete",
+                                    "payload": {
+                                        "selected_date": "${form.selected_date}",
+                                        "selected_slot": "${form.selected_slot}",
+                                        "flow_type": "slot_picker"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

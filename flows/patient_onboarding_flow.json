@@ -1,0 +1,80 @@
+{
+    "version": "6.0",
+    "screens": [
+        {
+            "id": "PATIENT_DETAILS",
+            "title": "Patient Details",
+            "terminal": true,
+            "data": {},
+            "layout": {
+                "type": "SingleColumnLayout",
+                "children": [
+                    {
+                        "type": "Form",
+                        "name": "flow_path",
+                        "children": [
+                            {
+                                "type": "TextSubheading",
+                                "text": "Please provide your details to book an appointment."
+                            },
+                            {
+                                "type": "TextInput",
+                                "name": "full_name",
+                                "label": "Full Name",
+                                "input-type": "text",
+                                "required": true
+                            },
+                            {
+                                "type": "TextInput",
+                                "name": "email",
+                                "label": "Email Address",
+                                "input-type": "email",
+                                "required": true
+                            },
+                            {
+                                "type": "DatePicker",
+                                "name": "date_of_birth",
+                                "label": "Date of Birth",
+                                "required": false
+                            },
+                            {
+                                "type": "Dropdown",
+                                "name": "gender",
+                                "label": "Gender",
+                                "required": false,
+                                "data-source": [
+                                    {
+                                        "id": "male",
+                                        "title": "Male"
+                                    },
+                                    {
+                                        "id": "female",
+                                        "title": "Female"
+                                    },
+                                    {
+                                        "id": "other",
+                                        "title": "Other"
+                                    }
+                                ]
+                            },
+                            {
+                                "type": "Footer",
+                                "label": "Submit",
+                                "on-click-action": {
+                                    "name": "complete",
+                                    "payload": {
+                                        "flow_type": "patient_onboarding",
+                                        "full_name": "${form.full_name}",
+                                        "email": "${form.email}",
+                                        "date_of_birth": "${form.date_of_birth}",
+                                        "gender": "${form.gender}"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

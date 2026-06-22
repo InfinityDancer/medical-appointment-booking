@@ -12,7 +12,7 @@ def send_mail_node(state):
     smtp_config = {
     "host": "smtp.gmail.com",
     "port": 587,
-    "username": "luffy.xd32@gmail.com",
+    "username": "neha.harchandani@snaptechproject.com",
     "password": "jeye nejo hkac wtoz"
     }
     try:

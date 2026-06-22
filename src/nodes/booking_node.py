@@ -1,16 +1,55 @@
-from src.nodes.agent_node import booking_classifier_agent,patient_details_agent,doctor_name_agent,datetime_agent
-from prompts import BOOKING_AGENT_PROMPT,DATE_TIME_AGENT_PROMPT,PATIENT_CONFIRMATION_AGENT_PROMPT,DOCTOR_AGENT_PROMPT
+from src.nodes.agent_node import booking_classifier_agent,patient_details_agent,doctor_name_agent,datetime_agent,location_agent
+from prompts import BOOKING_AGENT_PROMPT,DATE_TIME_AGENT_PROMPT,PATIENT_CONFIRMATION_AGENT_PROMPT,DOCTOR_AGENT_PROMPT,LOCATION_AGENT_PROMPT
 import json
 from src.utils.utils import extract_time_data
 from src.services.api_service import book_appointment
 
 def booking_node(state):
-    # 1. Run the initial booking classifier
-    state = booking_classifier_agent(state, BOOKING_AGENT_PROMPT)
+    graph_state = state.get("graph_state", {})
     
-    # 2. Route to the next appropriate agent (e.g., DoctorNameAgent, DateTimeAgent, or PatientDetails)
-    # The result of this call is the updated state after the next agent has run.
-    state = route_to_next_agent(state)
+    # ==================== FLOW RESPONSE BYPASS ====================
+    # If this is a flow response, skip the booking classifier and route directly
+    # to the respective agent to consume the flow data.
+    if graph_state.get("is_flow_response"):
+        synthetic_msg = graph_state.get("whatsapp_message", "")
+        if synthetic_msg == "__FLOW_RESPONSE__patient_onboarding":
+            print("📋 Flow response in booking_node — routing directly to patient_details_agent")
+            graph_state.setdefault("agent_output", {})
+            graph_state["agent_output"]["booking_agent"] = {
+                "content": json.dumps({"routing": "PatientDetails"}),
+                "type": "agent_reply"
+            }
+            state = patient_details_agent(state, PATIENT_CONFIRMATION_AGENT_PROMPT)
+        elif synthetic_msg == "__FLOW_RESPONSE__doctor_selection":
+            print("📋 Flow response in booking_node — routing directly to doctor_name_agent")
+            graph_state.setdefault("agent_output", {})
+            graph_state["agent_output"]["booking_agent"] = {
+                "content": json.dumps({"routing": "DoctorNameAgent"}),
+                "type": "agent_reply"
+            }
+            state = doctor_name_agent(state, DOCTOR_AGENT_PROMPT)
+        elif synthetic_msg == "__FLOW_RESPONSE__location_selection":
+            print("📋 Flow response in booking_node — routing directly to location_agent")
+            graph_state.setdefault("agent_output", {})
+            graph_state["agent_output"]["booking_agent"] = {
+                "content": json.dumps({"routing": "LocationAgent"}),
+                "type": "agent_reply"
+            }
+        elif synthetic_msg == "__FLOW_RESPONSE__slot_picker":
+            print("📋 Flow response in booking_node — routing directly to datetime_agent")
+            graph_state.setdefault("agent_output", {})
+            graph_state["agent_output"]["booking_agent"] = {
+                "content": json.dumps({"routing": "DateTimeAgent"}),
+                "type": "agent_reply"
+            }
+            state = datetime_agent(state, DATE_TIME_AGENT_PROMPT)
+    else:
+        # 1. Run the initial booking classifier
+        state = booking_classifier_agent(state, BOOKING_AGENT_PROMPT)
+        
+        # 2. Route to the next appropriate agent (e.g., DoctorNameAgent, DateTimeAgent, or PatientDetails)
+        # The result of this call is the updated state after the next agent has run.
+        state = route_to_next_agent(state)
     # print("next_agent: ", state.get("next_node", "UNKNOWN"))
     
     
@@ -24,6 +63,8 @@ def booking_node(state):
         graph_state = state["graph_state"]
         memory = state["memory"]
 
+        organisation_details = graph_state.get("organisation_details","")
+        organisation_id = organisation_details.get("organisation_id","")
         # Extract required fields (using keys like 'Patient_name', 'DOB', etc. as seen in your example)
         name = patient_details.get("Patient_name")
         dob = patient_details.get("DOB")
@@ -32,7 +73,7 @@ def booking_node(state):
         number = graph_state.get("sender") # The user's phone number
         doctor_id = memory.get("doctor_id")
         requested_time = memory.get("requested_appointment_time")
-
+        location = memory.get("location")
         # Format the time components
         try:
             time_data = extract_time_data(requested_time)
@@ -50,7 +91,19 @@ def booking_node(state):
 
         # Call the booking API
         try:
-            response = book_appointment(name, email, dob, number, gender, doctor_id, slot_start_time, slot_start_date)
+            print("booking data",name, email, dob, number, gender, doctor_id, slot_start_time, slot_start_date,location)
+            response = book_appointment(
+                organisation_id=organisation_id,
+                patient_name=name,
+                patient_email=email,
+                patient_dob=dob,
+                patient_phone_number=number,
+                patient_gender=gender,
+                doctor_id=doctor_id,
+                slot_start_time=slot_start_time,
+                slot_start_date=slot_start_date,
+                location=location
+            )
             
             print("booking response:",response)
 
@@ -95,8 +148,9 @@ def route_to_next_agent(state):
     next_route = state["graph_state"]["agent_output"]["booking_agent"].get("content","")
 
     parsed = json.loads(next_route)
-
-    if parsed.get("routing") == "DoctorNameAgent":
+    if parsed.get("routing") == 'LocationAgent':
+        return location_agent(state,LOCATION_AGENT_PROMPT)
+    elif parsed.get("routing") == "DoctorNameAgent":
         return doctor_name_agent(state,DOCTOR_AGENT_PROMPT)
     elif parsed.get("routing") == "DateTimeAgent":
         return datetime_agent(state,DATE_TIME_AGENT_PROMPT)

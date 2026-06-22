@@ -28,13 +28,55 @@ def clean_message(message: str) -> str:
 
 def get_agent_response(agent_output: dict, agent: str):
     try:
-        agent_response = agent_output.get(agent, "").get("content", "")
+        print(f"\n📥 get_agent_response() called for agent: {agent}")
+
+        agent_dict = agent_output.get(agent, {})
+        print(f"   agent_dict keys: {list(agent_dict.keys()) if isinstance(agent_dict, dict) else type(agent_dict).__name__}")
+        print(f"   agent_dict preview: {str(agent_dict)[:300]}")
+
+        # Check if agent output has an error key (both providers failed)
+        if isinstance(agent_dict, dict) and "error" in agent_dict:
+            print(f"🔴 get_agent_response: agent_dict contains 'error' key: {agent_dict['error']}")
+            # If there's also a content key (our fix), use it; otherwise return error message
+            if "content" in agent_dict:
+                print(f"   ✅ Found 'content' key alongside 'error', attempting to parse it")
+            else:
+                print(f"   ❌ No 'content' key! This is the root cause of empty responses.")
+                return "something went wrong, please try again"
+
+        agent_response = agent_dict.get("content", "") if isinstance(agent_dict, dict) else ""
+        
+        # Check if response is empty
+        if not agent_response or not agent_response.strip():
+            print(f"⚠️  Empty 'content' from {agent}")
+            print(f"   Full agent_dict: {str(agent_dict)[:500]}")
+            return "something went wrong, please try again"
+        
+        print(f"   Raw content (first 200 chars): {str(agent_response)[:200]!r}")
+        
         parsed = json.loads(agent_response)
         agent_message = parsed.get("agent_response", "")
-        # print("agent_response", agent_message)
+        
+        # Check if agent_message is empty
+        if not agent_message or not agent_message.strip():
+            print(f"⚠️  Empty agent_message from {agent}")
+            print(f"   Parsed JSON: {parsed}")
+            return "something went wrong, please try again"
+        
+        print(f"   ✅ Successfully extracted agent_message (first 100 chars): {str(agent_message)[:100]!r}")
         return agent_message
+    except json.JSONDecodeError as e:
+        print(f"❌ Error in get_agent_response: JSON decode error - {e}")
+        print(f"   Agent: {agent}, Response preview: {str(agent_response)[:200]}")
+        # Try to use raw text as-is if it looks like a conversational message
+        if agent_response and len(agent_response.strip()) > 5 and not agent_response.strip().startswith('{'):
+            print(f"   ↪ Raw text doesn't look like JSON, returning it as-is")
+            return agent_response.strip()
+        return "something went wrong, please try again"
     except Exception as e:
-        print(f"Error in get_agent_response: {e}")
+        print(f"❌ Error in get_agent_response: {type(e).__name__} - {e}")
+        import traceback
+        print(f"   Traceback: {traceback.format_exc()}")
         return "something went wrong, please try again"
 
 

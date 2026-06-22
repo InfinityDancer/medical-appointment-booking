@@ -1,21 +1,22 @@
-# Medical Appointment Booking - Agentic RAG (WhatsApp)
+# Medical Appointment Booking - WhatsApp Workflows
 
-This branch (`Agentic-RAG`) contains the **Agentic Retrieval-Augmented Generation (RAG)** feature for the Medical Appointment Booking system, originally developed as `medisync_ARAG` at Prognos Labs.
+This branch (`whatsapp_workflows`) contains specialized **WhatsApp Workflows** for the Medical Appointment Booking system, originally developed as `medisync_whatsapp_workflows` at Prognos Labs.
 
 ## Overview
 
-The Agentic RAG integration enhances the core WhatsApp text agent by combining **Retrieval-Augmented Generation (RAG)** with autonomous agentic workflows. This allows the conversational agent to effectively query medical knowledge bases, clinical FAQs, and facility information, while autonomously taking actions like scheduling, rescheduling, or canceling appointments.
+While the core `medisync` application handles foundational scheduling, this branch extends the WhatsApp (text) agent with complex, multi-step workflows. It is designed to guide patients through intricate scheduling logic, intake forms, post-appointment follow-ups, and targeted medical inquiries directly within WhatsApp.
 
 ## Key Features
 
-- **WhatsApp Integration:** Operates seamlessly over WhatsApp to assist patients with their inquiries and bookings.
-- **Agentic Workflows:** Employs autonomous agent frameworks to evaluate user intent, deciding when to retrieve information and when to execute booking tools.
-- **Retrieval-Augmented Generation (RAG):** Allows the agent to pull from external knowledge sources (like clinic policies, preparation instructions for procedures, or doctor specialties) to answer patient questions accurately before or during the booking process.
-- **Stateful Conversations:** Maintains the context of the interaction, meaning the agent can remember retrieved information while navigating the complex logic of checking doctor availability and securing a time slot.
+- **Advanced Conversational Flows:** Adds structured workflow support to the WhatsApp agent, ensuring patients are guided through necessary steps without getting stuck.
+- **Appointment Lifecycle Management:** Automates workflows for not just booking, but also rescheduling, cancellations, and pre-appointment preparation checks.
+- **Interactive Messaging:** Leverages WhatsApp's interactive capabilities (like buttons and lists) where applicable to streamline the user experience.
+- **Integration with Core Services:** Works in tandem with the primary backend logic to check doctor schedules, book slots, and update patient records in real time.
 
 ## Getting Started
 
-1. Set up the `.env` file with the required environment variables (WhatsApp API credentials, Database URLs, LLM API keys, and Vector Database credentials).
-2. Install the necessary dependencies (refer to `requirements.txt`).
-3. Run the application to start the webhook listener for WhatsApp messages.
-4. Interact with the agent through the configured WhatsApp business number.
+1. Ensure your `.env` file is configured with the necessary WhatsApp Business API credentials, database URLs, and LLM API keys.
+2. Install the required dependencies (refer to `requirements.txt`).
+3. Run the application to initialize the webhook listener for WhatsApp messages.
+4. Interact with the bot via WhatsApp to test the automated workflow capabilities.
+

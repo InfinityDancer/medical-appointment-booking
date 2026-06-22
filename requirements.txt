@@ -78,3 +78,12 @@ urllib3==2.5.0
 uvicorn==0.35.0
 xxhash==3.5.0
 zstandard==0.25.0
+langchain-community
+langchain-chroma
+chromadb
+python-docx
+tzdata
+pypdf
+supabase==2.28.0
+postgrest==2.28.0
+

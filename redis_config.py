@@ -5,9 +5,9 @@ import redis
 load_dotenv()
 
 def get_redis_client():
-    REDIS_HOST = os.getenv("REDIS_HOST", "localhost")
-    REDIS_PORT = os.getenv("REDIS_PORT", "6379")
-    REDIS_PASSWORD = os.getenv("REDIS_PASSWORD", None)
+    REDIS_HOST = os.getenv("REDIS_HOST")
+    REDIS_PORT = os.getenv("REDIS_PORT")
+    REDIS_PASSWORD = os.getenv("REDIS_PASSWORD")
     
     # Clean host if needed
     if REDIS_HOST and ':' in REDIS_HOST:
