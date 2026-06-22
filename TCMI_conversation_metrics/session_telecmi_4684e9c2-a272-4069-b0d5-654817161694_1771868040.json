@@ -1,0 +1,29 @@
+{
+  "session_id": "telecmi_4684e9c2-a272-4069-b0d5-654817161694_1771868040",
+  "duration_seconds": 72.5,
+  "conversation_complete": true,
+  "first_call_resolution": false,
+  "intent_recognition_accuracy": 100.0,
+  "escalation_rate": 0.0,
+  "accuracy": 100.0,
+  "avg_latency_seconds": 2.9602,
+  "max_latency_seconds": 2.9602,
+  "total_tokens": 6862,
+  "prompt_tokens": 6827,
+  "completion_tokens": 35,
+  "user_messages": 0,
+  "agent_messages": 0,
+  "function_calls_total": 0,
+  "function_calls_successful": 0,
+  "booking_attempted": false,
+  "booking_successful": false,
+  "cancellation_attempted": false,
+  "cancellation_successful": false,
+  "reschedule_attempted": false,
+  "reschedule_successful": false,
+  "escalated_to_human": false,
+  "response_latencies": [
+    2.9602
+  ],
+  "intents_detected": []
+}

@@ -1,0 +1,35 @@
+{
+  "session_id": "telecmi_faa809ac-6b01-4689-8cf1-84bb849bf278_1771938691",
+  "duration_seconds": 89.3,
+  "conversation_complete": true,
+  "first_call_resolution": true,
+  "intent_recognition_accuracy": 100.0,
+  "escalation_rate": 0.0,
+  "accuracy": 100.0,
+  "avg_latency_seconds": 2.4065,
+  "max_latency_seconds": 3.5828,
+  "total_tokens": 35014,
+  "prompt_tokens": 34886,
+  "completion_tokens": 128,
+  "cache_read_tokens": 27392,
+  "user_messages": 0,
+  "agent_messages": 0,
+  "function_calls_total": 1,
+  "function_calls_successful": 1,
+  "booking_attempted": false,
+  "booking_successful": false,
+  "cancellation_attempted": false,
+  "cancellation_successful": false,
+  "reschedule_attempted": false,
+  "reschedule_successful": false,
+  "escalated_to_human": false,
+  "response_latencies": [
+    2.685,
+    1.6149,
+    3.5828,
+    1.7434
+  ],
+  "intents_detected": [
+    "list_doctors"
+  ]
+}

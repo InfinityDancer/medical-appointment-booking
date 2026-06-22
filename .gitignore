@@ -1,7 +1,6 @@
 # Python virtual environments
 venv/
 .venv/
-*-env/
 .env
 /.env
 file.txt
@@ -11,3 +10,5 @@ __pycache__/
 
 # VS Code
 .vscode/
+models/kokoro-v0_19.onnx
+

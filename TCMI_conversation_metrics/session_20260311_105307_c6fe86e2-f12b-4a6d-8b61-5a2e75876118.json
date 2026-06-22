@@ -1,0 +1,38 @@
+{
+  "session_id": "20260311_105307_c6fe86e2-f12b-4a6d-8b61-5a2e75876118",
+  "duration_seconds": 83.7,
+  "conversation_complete": true,
+  "first_call_resolution": true,
+  "intent_recognition_accuracy": 100.0,
+  "escalation_rate": 0.0,
+  "accuracy": 100.0,
+  "avg_latency_seconds": 4.257,
+  "max_latency_seconds": 5.8639,
+  "total_tokens": 39690,
+  "prompt_tokens": 39388,
+  "completion_tokens": 302,
+  "cache_read_tokens": 29952,
+  "user_messages": 0,
+  "agent_messages": 0,
+  "function_calls_total": 4,
+  "function_calls_successful": 4,
+  "booking_attempted": false,
+  "booking_successful": false,
+  "cancellation_attempted": false,
+  "cancellation_successful": false,
+  "reschedule_attempted": true,
+  "reschedule_successful": true,
+  "escalated_to_human": false,
+  "response_latencies": [
+    4.23,
+    5.0587,
+    3.7756,
+    2.3569,
+    5.8639
+  ],
+  "intents_detected": [
+    "reschedule_appointment",
+    "check_availability",
+    "patient_lookup"
+  ]
+}

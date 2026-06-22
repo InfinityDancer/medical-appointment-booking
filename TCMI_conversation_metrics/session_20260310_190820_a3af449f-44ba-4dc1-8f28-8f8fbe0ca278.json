@@ -1,0 +1,36 @@
+{
+  "session_id": "20260310_190820_a3af449f-44ba-4dc1-8f28-8f8fbe0ca278",
+  "duration_seconds": 83.3,
+  "conversation_complete": true,
+  "first_call_resolution": true,
+  "intent_recognition_accuracy": 100.0,
+  "escalation_rate": 0.0,
+  "accuracy": 100.0,
+  "avg_latency_seconds": 8.14,
+  "max_latency_seconds": 19.8675,
+  "total_tokens": 28859,
+  "prompt_tokens": 28649,
+  "completion_tokens": 210,
+  "cache_read_tokens": 20352,
+  "user_messages": 0,
+  "agent_messages": 0,
+  "function_calls_total": 3,
+  "function_calls_successful": 3,
+  "booking_attempted": false,
+  "booking_successful": false,
+  "cancellation_attempted": false,
+  "cancellation_successful": false,
+  "reschedule_attempted": true,
+  "reschedule_successful": true,
+  "escalated_to_human": false,
+  "response_latencies": [
+    5.6379,
+    5.1764,
+    19.8675,
+    1.878
+  ],
+  "intents_detected": [
+    "list_doctors",
+    "reschedule_appointment"
+  ]
+}
